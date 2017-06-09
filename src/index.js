@@ -1,35 +1,15 @@
-// import React from 'react';
-// import { render } from 'react-dom';
-// import { Provider } from 'react-redux';
-// import configureStore from './store/configureStore.dev';
-// import Root from './containers/Root';
-//
-// const store = configureStore();
-//
-// render(
-//     <AppContainer>
-//         <Root
-//             store={ store }
-//         />
-//     </AppContainer>,
-//     document.getElementById('root')
-// );
-
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore.dev';
-import Root from './containers/Root.dev'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Root from './containers/Root.dev';
+import configureStore from './store/configureStore';
+import './index.css';
 
 const store = configureStore();
 
 
-render(
-    <AppContainer>
-        <Root
-            store={ store }
-        />
-    </AppContainer>,
+ReactDOM.render(
+    <Root
+        store={ store }
+    />,
     document.getElementById('root')
 );
-
