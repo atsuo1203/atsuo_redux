@@ -8,3 +8,5 @@ create-react-app 1.3.0
 ## 概要
 
 [redux-devtools](https://github.com/gaearon/redux-devtools)の内容をcreate-react-appから作れるようにした。
+
+![toDo](https://github.com/atsuo1203/atsuo_redux/wiki/toDo.png)
