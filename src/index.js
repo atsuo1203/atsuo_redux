@@ -1,10 +1,28 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import configureStore from './store/configureStore';
-import Root from './containers/Root';
+// import React from 'react';
+// import { render } from 'react-dom';
+// import { Provider } from 'react-redux';
+// import configureStore from './store/configureStore.dev';
+// import Root from './containers/Root';
+//
+// const store = configureStore();
+//
+// render(
+//     <AppContainer>
+//         <Root
+//             store={ store }
+//         />
+//     </AppContainer>,
+//     document.getElementById('root')
+// );
+
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore.dev';
+import Root from './containers/Root.dev'
 
 const store = configureStore();
+
 
 render(
     <AppContainer>
@@ -14,18 +32,4 @@ render(
     </AppContainer>,
     document.getElementById('root')
 );
-
-if (module.hot) {
-    module.hot.accept('./containers/Root', () => {
-        const RootContainer = require('./containers/Root').default;
-        render(
-            <AppContainer>
-                <RootContainer
-                    store={ store }
-                />
-            </AppContainer>,
-            document.getElementById('root')
-        );
-    });
-}
 
