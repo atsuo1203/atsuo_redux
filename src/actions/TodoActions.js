@@ -40,3 +40,9 @@ export function clearMarked() {
     type: types.CLEAR_MARKED
   };
 }
+
+export function selectAll() {
+  return {
+    type: types.SELECT_ALL
+  };
+}

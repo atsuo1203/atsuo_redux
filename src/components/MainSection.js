@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 import Footer from './Footer';
-import { SHOW_ALL, SHOW_MARKED, SHOW_UNMARKED } from '../constants/TodoFilters';
+import {SHOW_ALL, SHOW_MARKED, SHOW_UNMARKED} from '../constants/TodoFilters';
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
@@ -18,7 +18,7 @@ export default class MainSection extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { filter: SHOW_ALL };
+    this.state = {filter: SHOW_ALL};
   }
 
   handleClearMarked() {
@@ -28,17 +28,21 @@ export default class MainSection extends Component {
     }
   }
 
+  handleSelectAll() {
+    this.props.actions.selectAll();
+  }
+
   handleShow(filter) {
-    this.setState({ filter });
+    this.setState({filter});
   }
 
   render() {
-    const { todos, actions } = this.props;
-    const { filter } = this.state;
+    const {todos, actions} = this.props;
+    const {filter} = this.state;
 
     const filteredTodos = todos.filter(TODO_FILTERS[filter]);
     const markedCount = todos.reduce((count, todo) =>
-      todo.marked ? count + 1 : count,
+        todo.marked ? count + 1 : count,
       0
     );
 
@@ -56,20 +60,20 @@ export default class MainSection extends Component {
   }
 
   renderToggleAll(markedCount) {
-    const { todos, actions } = this.props;
+    const {todos, actions} = this.props;
     if (todos.length > 0) {
       return (
         <input className='toggle-all'
                type='checkbox'
                checked={markedCount === todos.length}
-               onChange={actions.markAll} />
+               onChange={actions.markAll}/>
       );
     }
   }
 
   renderFooter(markedCount) {
-    const { todos } = this.props;
-    const { filter } = this.state;
+    const {todos} = this.props;
+    const {filter} = this.state;
     const unmarkedCount = todos.length - markedCount;
 
     if (todos.length) {
@@ -78,8 +82,10 @@ export default class MainSection extends Component {
                 unmarkedCount={unmarkedCount}
                 filter={filter}
                 onClearMarked={this.handleClearMarked.bind(this)}
-                onShow={this.handleShow.bind(this)} />
+                onSelectAll={this.handleSelectAll.bind(this)}
+                onShow={this.handleShow.bind(this)}/>
       );
     }
   }
 }
+

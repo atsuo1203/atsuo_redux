@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { SHOW_ALL, SHOW_MARKED, SHOW_UNMARKED } from '../constants/TodoFilters';
+import {SHOW_ALL, SHOW_MARKED, SHOW_UNMARKED} from '../constants/TodoFilters';
 
 const FILTER_TITLES = {
   [SHOW_ALL]: 'All',
@@ -15,6 +15,7 @@ export default class Footer extends Component {
     unmarkedCount: PropTypes.number.isRequired,
     filter: PropTypes.string.isRequired,
     onClearMarked: PropTypes.func.isRequired,
+    onSelectAll: PropTypes.func.isRequired,
     onShow: PropTypes.func.isRequired
   };
 
@@ -30,12 +31,14 @@ export default class Footer extends Component {
           )}
         </ul>
         {this.renderClearButton()}
+        {this.renderSelectAllButton()}
+
       </footer>
     );
   }
 
   renderTodoCount() {
-    const { unmarkedCount } = this.props;
+    const {unmarkedCount} = this.props;
     const itemWord = unmarkedCount === 1 ? 'item' : 'items';
 
     return (
@@ -47,11 +50,11 @@ export default class Footer extends Component {
 
   renderFilterLink(filter) {
     const title = FILTER_TITLES[filter];
-    const { filter: selectedFilter, onShow } = this.props;
+    const {filter: selectedFilter, onShow} = this.props;
 
     return (
-      <a className={classnames({ selected: filter === selectedFilter })}
-         style={{ cursor: 'hand' }}
+      <a className={classnames({selected: filter === selectedFilter})}
+         style={{cursor: 'hand'}}
          onClick={() => onShow(filter)}>
         {title}
       </a>
@@ -59,14 +62,37 @@ export default class Footer extends Component {
   }
 
   renderClearButton() {
-    const { markedCount, onClearMarked } = this.props;
+    const {markedCount, onClearMarked} = this.props;
     if (markedCount > 0) {
       return (
         <button className='clear-completed'
-                onClick={onClearMarked} >
+                onClick={onClearMarked}>
           Clear completed
         </button>
       );
     }
   }
+
+  renderSelectAllButton() {
+    const {onSelectAll} = this.props;
+    return (
+      <div>
+        <button className="select"
+                onClick={onSelectAll}>
+          selectAll
+        </button>
+
+        <style>
+          {"\
+              .select{\
+                color:blue;\
+                position: absolute;\
+                right: 120px;\
+              }\
+            "}
+        </style>
+      </div>
+    )
+  }
+
 }
