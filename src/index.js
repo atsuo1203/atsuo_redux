@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux';
 import TodoApp from './containers/TodoApp';
 import DevTools from './containers/DevTools';
-import configureStore from './store/configureStore.dev';
+import configureStore from './store/configureStore';
 import './index.css';
 
 const store = configureStore();
