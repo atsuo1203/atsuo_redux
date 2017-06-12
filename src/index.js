@@ -1,15 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Root from './containers/Root.dev';
-import configureStore from './store/configureStore';
+import {render} from 'react-dom'
+import {Provider} from 'react-redux';
+import TodoApp from './containers/TodoApp';
+import DevTools from './containers/DevTools';
+import configureStore from './store/configureStore.dev';
 import './index.css';
 
 const store = configureStore();
 
-
-ReactDOM.render(
-    <Root
-        store={ store }
-    />,
-    document.getElementById('root')
+let rootElement = document.getElementById('root');
+render(
+  <Provider store={store}>
+    <div>
+      <TodoApp />,
+      <DevTools/>
+    </div>
+  </Provider>,
+  rootElement
 );
