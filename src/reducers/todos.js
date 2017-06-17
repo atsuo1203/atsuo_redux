@@ -3,7 +3,6 @@ import {
   DELETE_TODO,
   EDIT_TODO,
   MARK_TODO,
-  MARK_ALL,
   CLEAR_MARKED,
   SELECT_ALL
 } from '../constants/ActionTypes';
@@ -41,13 +40,6 @@ export default function todos(state = initialState, action) {
           {...todo, marked: !todo.marked} :
           todo
       );
-
-    case MARK_ALL:
-      const areAllMarked = state.every(todo => todo.marked);
-      return state.map(todo => ({
-        ...todo,
-        marked: !areAllMarked
-      }));
 
     case CLEAR_MARKED:
       return state.filter(todo => todo.marked === false);

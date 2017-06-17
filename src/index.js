@@ -12,7 +12,7 @@ let rootElement = document.getElementById('root');
 render(
   <Provider store={store}>
     <div>
-      <TodoApp />,
+      <TodoApp />
       <DevTools/>
     </div>
   </Provider>,
